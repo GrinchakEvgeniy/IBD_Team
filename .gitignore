@@ -1,0 +1,13 @@
+node_modules/
+db.sqlite3
+
+.idea/
+
+ibd_api/migrations/*
+ibd_api/__pycache__/
+ibd/__pycache__/
+ibd_dashboard/__pycache__/
+ibd_dashboard/migrations/*
+
+!ibd_api/migrations/__init__.py
+!ibd_dashboard/migrations/__init__.py
