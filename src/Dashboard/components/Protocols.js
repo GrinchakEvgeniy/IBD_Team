@@ -1,9 +1,12 @@
 import React from 'react';
+import ToolsPanel from "./Protocols/ToolsPanel";
+import Table from "./Protocols/Table";
 
 const Protocols = () => {
     return (
-        <div>
-
+        <div className="protocols_wrap container">
+            <ToolsPanel/>
+            <Table/>
         </div>
     );
 };

@@ -20,10 +20,16 @@ class Amam(models.Model):
 
 
 class Protocol(models.Model):
-    patient = models.CharField(max_length=100)
-    date_of_examination = models.CharField(max_length=10)
-    tech_param_survey = RichTextField()
-    protocol = RichTextField()
-    conclusion = RichTextField()
-    notes_first = models.ImageField(upload_to='notes/')
-    notes_second = models.ImageField(upload_to='notes/')
+    patient = models.CharField(max_length=100, null=True, blank=True)
+    date_of_examination = models.CharField(max_length=10, null=True, blank=True)
+    tech_param_survey = RichTextField(null=True, blank=True)
+    protocol = RichTextField(null=True, blank=True)
+    conclusion = RichTextField(null=True, blank=True)
+
+class ProtocolImages(models.Model):
+    image = models.ImageField(upload_to='notes/', null=True, blank=True)
+    protocol = models.ForeignKey(Protocol,
+                                 on_delete=models.CASCADE,
+                                 null=True,
+                                 blank=True,
+                                 related_name="protocol_image")
