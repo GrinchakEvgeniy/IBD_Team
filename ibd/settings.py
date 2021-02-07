@@ -128,6 +128,8 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATICFILES_DIRS= [
+    os.path.join(BASE_DIR, "ibd/static"),
+]
 
 STATIC_URL = '/static/'

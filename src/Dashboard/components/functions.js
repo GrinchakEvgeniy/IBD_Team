@@ -14,6 +14,36 @@
         return cookieValue;
     }
 
+ export async function getProtocols(){
+     let csrftoken = getCookie('csrftoken');
+     const request = {
+         method: 'GET', // *GET, POST, PUT, DELETE, etc.
+         credentials: 'same-origin',
+         headers: {
+             'Content-Type': 'application/json',
+             "X-CSRFToken": csrftoken
+         },
+     }
+     const response = await fetch('/api/protocols', request);
+     const result = await response.json();
+     return result;
+ }
+
+ export async function deleteProtocol(data){
+     let csrftoken = getCookie('csrftoken');
+     const request = {
+         method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+         credentials: 'same-origin',
+         headers: {
+             'Content-Type': 'application/json',
+             "X-CSRFToken": csrftoken
+         },
+         body: JSON.stringify(data)
+     }
+     const response = await fetch('/api/protocols', request);
+     const result = await response.json();
+     return result;
+ }
 
 
 export async function uploadProtocol(data){

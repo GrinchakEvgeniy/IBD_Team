@@ -6,6 +6,8 @@ import Protocols from "./Protocols";
 import Amam from "./Amam";
 import NewAmam from "./NewAmam";
 import NewProtocol from "./NewProtocol";
+import PrintProtocol from "./PrintProtocol";
+import UpdateProtocol from "./UpdateProtocol";
 
 class App extends Component {
     render() {
@@ -18,6 +20,8 @@ class App extends Component {
                     <Route exact path='/amam' component={Amam}/>
                     <Route exact path='/amam/new' component={NewAmam}/>
                     <Route exact path='/protocols/new' component={NewProtocol}/>
+                    <Route exact path='/protocols/print/:id' component={PrintProtocol}/>
+                    <Route exact path='/protocols/update/:id' component={UpdateProtocol}/>
                 </Switch>
             </div>
         );

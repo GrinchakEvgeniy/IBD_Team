@@ -1,6 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {getProtocols, deleteProtocol} from "../functions";
+import { Link } from 'react-router-dom';
 
 const Table = () => {
+    const [protocols, setProtocols] = useState([]);
+
+    const GetProtocols = () => {
+        getProtocols()
+            .then(data=>{
+                setProtocols(data);
+            })
+    }
+
+    useEffect(()=>{
+        GetProtocols();
+    }, []);
+
+    const Delete = (delete_id) => {
+        deleteProtocol({delete_id:delete_id})
+            .then(data=>{
+                GetProtocols();
+            })
+    }
+
     return (
         <div id="datatables-clients_wrapper" className="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div className="row">
@@ -27,20 +49,53 @@ const Table = () => {
                             <thead>
                             <tr role="row">
                                 <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
+                                    colSpan="1"  >Actions</th>
+                                <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
                                     colSpan="1"  >Patient</th>
                                 <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
                                     colSpan="1"  >Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr role="row" className="odd">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                            </tr>
-                            <tr role="row" className="even">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                            </tr>
+                            {
+                                protocols.map((data, index)=>{
+                                    if(index%2 == 0){
+                                        return <tr role="row" key={index} className="odd">
+                                            <td className="dtr-control">
+                                                <p>{data.id}</p>
+                                                <button className="btn btn-danger" onClick={()=>{
+                                                    Delete(data.id);
+                                                }}>Delete</button>
+                                                <button className="btn btn-warning" onClick={()=>{
+                                                    window.location.href = 'protocols/update/'+data.id;
+                                                }}>Update</button>
+                                                <button className="btn btn-success" onClick={()=>{
+                                                    window.location.href = 'protocols/print/'+data.id;
+                                                }}>Print</button>
+                                            </td>
+                                            <td className="sorting_1">{data.patient}</td>
+                                            <td className="sorting_1">{data.date_of_examination}</td>
+                                        </tr>
+                                    } else {
+                                        return <tr role="row" key={index} className="even">
+                                            <td className="dtr-control">
+                                                <p>{data.id}</p>
+                                                <button className="btn btn-danger" onClick={()=>{
+                                                    Delete(data.id);
+                                                }}>Delete</button>
+                                                <button className="btn btn-warning" onClick={()=>{
+                                                    window.location.href = 'protocols/update/'+data.id;
+                                                }}>Update</button>
+                                                <button className="btn btn-success" onClick={()=>{
+                                                    window.location.href = 'protocols/print/'+data.id;
+                                                }}>Print</button>
+                                            </td>
+                                            <td className="sorting_1">{data.patient}</td>
+                                            <td className="sorting_1">{data.date_of_examination}</td>
+                                        </tr>
+                                    }
+                                })
+                            }
                             </tbody>
                         </table>
                     </div>

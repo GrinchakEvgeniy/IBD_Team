@@ -15,7 +15,7 @@ class ProtocolList(viewsets.ViewSet):
     queryset = Protocol.objects.all()
 
     def get(self, request, format=None):
-        protocols = Protocol.objects.all()
+        protocols = Protocol.objects.all()[::-1]
         serializer = ProtocolSerializer(protocols, many=True)
         return Response(serializer.data)
 
@@ -25,6 +25,13 @@ class ProtocolList(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, format=None):
+        snippet = Protocol.objects.get(pk=int(request.data['delete_id']))
+        snippet.delete()
+        protocols = Protocol.objects.all()[::-1]
+        serializer = ProtocolSerializer(protocols, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class ProtocolImagesList(viewsets.ViewSet):
     serializer_class = ProtocolImageSerializer
@@ -36,8 +43,17 @@ class ProtocolImagesList(viewsets.ViewSet):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        protocol = Protocol.objects.get(id=int(request.data['protocol_id'][0]))
-
+        data = [
+            {'protocol': int(request.data['protocol_id']), 'image': request.data['file1']},
+            {'protocol': int(request.data['protocol_id']), 'image': request.data['file2']}
+        ]
+        for item in data:
+            serializer = ProtocolImageSerializer(data=item)
+            if serializer.is_valid():
+                serializer.save()
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'status': 'OK'}, status=status.HTTP_201_CREATED)
 
 
 
@@ -48,7 +64,7 @@ def main(request):
         return redirect('login-page')
 
 
-def dashboard(request):
+def dashboard(request, pk=None):
     return render(request, "dashboard/index.html")
 
 

@@ -17,7 +17,7 @@ const NewProtocol = () => {
 
 
     const Save = () => {
-        const data = {
+        const data_in = {
             patient: patient,
             date_of_examination: date,
             tech_param_survey: val1.toString('html'),
@@ -25,13 +25,16 @@ const NewProtocol = () => {
             conclusion: val3.toString('html'),
             protocol_image: []
         }
-        uploadProtocol(data)
+        uploadProtocol(data_in)
             .then((data)=>{
                 let formData = new FormData();
                 formData.append("file1", image1, image1.name);
                 formData.append("file2", image2, image2.name);
                 formData.append("protocol_id", data.id);
                 uploadProtocolImages(formData)
+                    .then(data=>{
+                        document.location.href = '/protocols';
+                    })
             })
     }
 

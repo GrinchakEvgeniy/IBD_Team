@@ -26,6 +26,9 @@ class Protocol(models.Model):
     protocol = RichTextField(null=True, blank=True)
     conclusion = RichTextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.patient
+
 class ProtocolImages(models.Model):
     image = models.ImageField(upload_to='notes/', null=True, blank=True)
     protocol = models.ForeignKey(Protocol,
