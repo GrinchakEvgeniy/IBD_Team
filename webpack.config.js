@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/Dashboard/index.js",
   output: {
-    path: path.join(__dirname, "/ibd_dashboard/static/js"),
+    path: path.join(__dirname, "/ibd/static/js"),
     filename: "main.js"
   },
   module: {
