@@ -14,8 +14,11 @@ class ProtocolList(viewsets.ViewSet):
     serializer_class = ProtocolSerializer
     queryset = Protocol.objects.all()
 
-    def get(self, request, format=None):
-        protocols = Protocol.objects.all()[::-1]
+    def get(self, request, pk=None, format=None):
+        if pk:
+            protocols = Protocol.objects.filter(pk=int(pk))
+        else:
+            protocols = Protocol.objects.all()[::-1]
         serializer = ProtocolSerializer(protocols, many=True)
         return Response(serializer.data)
 
@@ -25,6 +28,18 @@ class ProtocolList(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request):
+        print(request.data)
+        instance = Protocol.objects.get(id=int(request.data['id']))
+        instance.patient = request.data['patient']
+        instance.date_of_examination = request.data['date_of_examination']
+        instance.tech_param_survey = request.data['tech_param_survey']
+        instance.protocol = request.data['protocol']
+        instance.conclusion = request.data['conclusion']
+        instance.save()
+        serializer = ProtocolSerializer([instance], many=True)
+        return Response(serializer.data)
 
     def delete(self, request, format=None):
         snippet = Protocol.objects.get(pk=int(request.data['delete_id']))
@@ -43,17 +58,19 @@ class ProtocolImagesList(viewsets.ViewSet):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        data = [
-            {'protocol': int(request.data['protocol_id']), 'image': request.data['file1']},
-            {'protocol': int(request.data['protocol_id']), 'image': request.data['file2']}
-        ]
-        for item in data:
-            serializer = ProtocolImageSerializer(data=item)
+        for value in request.FILES:
+            serializer = ProtocolImageSerializer(data={'protocol': int(request.data['protocol_id']), 'image': request.FILES[value]})
             if serializer.is_valid():
                 serializer.save()
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({'status': 'OK'}, status=status.HTTP_201_CREATED)
+
+    def delete(self, request, format=None):
+        for id in request.data['ids']:
+            ProtocolImages.objects.get(pk=int(id)).delete()
+        return Response({'status': 'OK'}, status=status.HTTP_201_CREATED)
+
 
 
 

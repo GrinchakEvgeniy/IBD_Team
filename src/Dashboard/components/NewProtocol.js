@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import RichTextEditor from 'react-rte';
+import Dropzone from 'react-dropzone'
 import {uploadProtocol, uploadProtocolImages} from "./functions";
 
 const NewProtocol = () => {
-    const [image1, setImage1] = useState();
-    const [image2, setImage2] = useState();
+    const [images, setImages] = useState([]);
     const [patient, setPatient] = useState('')
     const [date, setDate] = useState('')
     const [val1, setVal1] = useState(RichTextEditor.createEmptyValue());
@@ -28,8 +28,10 @@ const NewProtocol = () => {
         uploadProtocol(data_in)
             .then((data)=>{
                 let formData = new FormData();
-                formData.append("file1", image1, image1.name);
-                formData.append("file2", image2, image2.name);
+                if(images.length == 0){document.location.href = '/protocols';return true;}
+                images.map((value, index)=>{
+                    formData.append("file"+index, value, value.name);
+                })
                 formData.append("protocol_id", data.id);
                 uploadProtocolImages(formData)
                     .then(data=>{
@@ -39,7 +41,7 @@ const NewProtocol = () => {
     }
 
     return (
-        <div className="new_amam_wrap container">
+        <div className="new_protocol_wrap container">
             <div className="row mb-2 mb-xl-3">
                 <div className="col-auto d-none d-sm-block">
                     <h3>Create new protocol</h3>
@@ -96,16 +98,16 @@ const NewProtocol = () => {
                     />
                 </div>
                 <div className="input-group row">
-                    <label htmlFor="exampleFormControlFile1">Example file input</label>
-                    <input type="file" className="form-control-file"
-                           onChange={(event => {setImage1(event.target.files[0])})}
-                           id="exampleFormControlFile1"/>
-                </div>
-                <div className="input-group row">
-                    <label htmlFor="exampleFormControlFile2">Example file input</label>
-                    <input type="file" className="form-control-file"
-                           onChange={(event => {setImage2(event.target.files[0])})}
-                           id="exampleFormControlFile2"/>
+                    <Dropzone onDrop={acceptedFiles =>setImages(acceptedFiles)}>
+                        {({getRootProps, getInputProps}) => (
+                            <section>
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <p>Drag 'n' drop some images here, or click to select images</p>
+                                </div>
+                            </section>
+                        )}
+                    </Dropzone>
                 </div>
             </div>
         </div>

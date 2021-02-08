@@ -14,7 +14,7 @@
         return cookieValue;
     }
 
- export async function getProtocols(){
+ export async function getProtocols(protocol_id = null){
      let csrftoken = getCookie('csrftoken');
      const request = {
          method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -24,7 +24,12 @@
              "X-CSRFToken": csrftoken
          },
      }
-     const response = await fetch('/api/protocols', request);
+     let response = null;
+     if (protocol_id != null){
+         response = await fetch('/api/protocols/'+protocol_id, request);
+     } else {
+         response = await fetch('/api/protocols', request);
+     }
      const result = await response.json();
      return result;
  }
@@ -33,6 +38,23 @@
      let csrftoken = getCookie('csrftoken');
      const request = {
          method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+         credentials: 'same-origin',
+         headers: {
+             'Content-Type': 'application/json',
+             "X-CSRFToken": csrftoken
+         },
+         body: JSON.stringify(data)
+     }
+     const response = await fetch('/api/protocols', request);
+     const result = await response.json();
+     return result;
+ }
+
+
+  export async function updateProtocol(data){
+     let csrftoken = getCookie('csrftoken');
+     const request = {
+         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
          credentials: 'same-origin',
          headers: {
              'Content-Type': 'application/json',
@@ -72,6 +94,22 @@ export async function uploadProtocolImages(data){
             "X-CSRFToken": csrftoken
         },
         body: data // body data type must match "Content-Type" header
+    }
+    const response = await fetch('/api/protocols-images', request);
+    const result = await response.json();
+    return result;
+}
+
+export async function deleteProtocolImages(data){
+    let csrftoken = getCookie('csrftoken');
+    const request = {
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRFToken": csrftoken
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
     }
     const response = await fetch('/api/protocols-images', request);
     const result = await response.json();

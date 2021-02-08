@@ -27,6 +27,7 @@
     "@babel/runtime": "^7.12.13",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-dropzone": "^11.3.1",
     "react-icons": "^4.1.0",
     "react-router-dom": "^5.2.0",
     "react-rte": "^0.16.3",

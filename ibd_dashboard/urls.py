@@ -13,6 +13,7 @@ urlpatterns = [
     path('protocols/print/<int:pk>', views.dashboard, name="protocol-print"),
     path('logout', views.log_out, name="logout"),
 
-    path('api/protocols', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
-    path('api/protocols-images', views.ProtocolImagesList.as_view({'get':'get', 'post':'post'}))
+    path('api/protocols', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete', 'put':'update'})),
+    path('api/protocols/<int:pk>', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
+    path('api/protocols-images', views.ProtocolImagesList.as_view({'get':'get', 'post':'post', 'delete':'delete'}))
 ]
