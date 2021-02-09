@@ -13,7 +13,7 @@ body {
 .sidebar_wrap {
     background: #313a46;
     min-width: 15%;
-    height: 100vh;
+    min-height: 100vh;
 }
 .header_sidebar .logo img {
     width: 100%;
@@ -64,4 +64,106 @@ body {
 }
 #navbar a:hover {
     background-color: #ababab5e;
+}
+
+.printed_wrap .p_log,
+.printed_wrap .title,
+.printed_wrap .patient,
+.printed_wrap .date,
+.printed_wrap .block,
+.printed_wrap .finish {
+    display: flex;
+}
+
+.printed_wrap {
+        width: 900px;
+    margin: 0 auto;
+    /*border: 1px black solid;*/
+}
+.printed_wrap .p_log {
+    justify-content: flex-end;
+    margin-right: 70px;
+}
+.img_l {
+    width: 130px;
+}
+.img_l img {
+    width: 100%;
+}
+.printed_wrap .title {
+    margin-top: 100px;
+    justify-content: center;
+}
+.block .block_title {
+    width: 200px;
+    padding-left: 12px;
+}
+.block .content {
+    width: 700px;
+    padding: 5px;
+}
+.block {
+    border-top: 4px black solid;
+}
+.block p {
+    margin: 0;
+}
+.printed_wrap .patient p,
+.printed_wrap .date p{
+    margin-right: 10px;
+}
+.printed_wrap .patient,
+.printed_wrap .date {
+    padding-left: 12px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.content .img img {
+    width: 100%;
+}
+.content .img {
+    width: 330px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.printed_wrap .finish {
+    margin-top: 50px;
+    justify-content: flex-end;
+}
+.printed_wrap .finish p {
+    margin-right: 10px;
+}
+.printed_wrap .finish div {
+    width: 100px;
+    height: 20px;
+    margin-right: 130px;
+    border-bottom: 1px black solid;
+}
+.printed_wrap .last {
+    border-bottom: 4px black solid;
+}
+.text_field {
+    margin-top: 30px !important;
+}
+.file_drop {
+    width: 500px !important;
+    height: 100px;
+    border: 2px black dashed;
+    margin: 0 auto !important;
+}
+.file_drop div {
+    cursor: pointer;
+}
+.images_update {
+    display: flex;
+    flex-wrap: wrap;
+}
+.images_update div {
+    width: 330px;
+}
+.images_update div img {
+    width: 100%;
 }

@@ -93,7 +93,7 @@ const UpdateProtocol = () => {
                            className="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default"/>
                 </div>
-                <div className="input-group mb-3">
+                <div className="text_field mb-3">
                     <div className="row"><p>ТЕХНІЧНІ ПАРАМЕТРИ ОБСТЕЖЕННЯ</p></div>
                     <RichTextEditor
                         value={val1}
@@ -102,7 +102,7 @@ const UpdateProtocol = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="text_field mb-3">
                     <div className="row"><p>ПРОТОКОЛ</p></div>
                     <RichTextEditor
                         value={val2}
@@ -111,7 +111,7 @@ const UpdateProtocol = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="text_field mb-3">
                     <div className="row"><p>ЗАКЛЮЧЕННЯ</p></div>
                     <RichTextEditor
                         value={val3}
@@ -127,7 +127,7 @@ const UpdateProtocol = () => {
                         })
                     }
                 </div>
-                <div className="input-group row">
+                <div className="file_drop row">
                     <Dropzone onDrop={acceptedFiles => setImages(acceptedFiles)}>
                         {({getRootProps, getInputProps}) => (
                             <section>

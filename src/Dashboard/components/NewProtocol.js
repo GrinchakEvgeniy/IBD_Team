@@ -70,7 +70,7 @@ const NewProtocol = () => {
                            className="form-control" aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default"/>
                 </div>
-                <div className="input-group mb-3">
+                <div className="mb-3 text_field">
                     <div className="row"><p>ТЕХНІЧНІ ПАРАМЕТРИ ОБСТЕЖЕННЯ</p></div>
                     <RichTextEditor
                         value={val1}
@@ -79,7 +79,7 @@ const NewProtocol = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="mb-3 text_field">
                     <div className="row"><p>ПРОТОКОЛ</p></div>
                     <RichTextEditor
                         value={val2}
@@ -88,7 +88,7 @@ const NewProtocol = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="mb-3 text_field">
                     <div className="row"><p>ЗАКЛЮЧЕННЯ</p></div>
                     <RichTextEditor
                         value={val3}
@@ -97,7 +97,7 @@ const NewProtocol = () => {
                         }}
                     />
                 </div>
-                <div className="input-group row">
+                <div className="file_drop row">
                     <Dropzone onDrop={acceptedFiles =>setImages(acceptedFiles)}>
                         {({getRootProps, getInputProps}) => (
                             <section>
