@@ -167,3 +167,11 @@ body {
 .images_update div img {
     width: 100%;
 }
+.protocols_wrap .dtr-control p {
+    display: inline;
+    margin-right: 10px;
+}
+
+.protocols_wrap .dtr-control button {
+    margin-right: 5px;
+}

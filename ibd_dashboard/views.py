@@ -3,11 +3,35 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 from .models import Protocol, ProtocolImages
-from .serializers import ProtocolSerializer, ProtocolImageSerializer
+from .serializers import *
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
+
+
+
+class AmamView(viewsets.ViewSet):
+    serializer_class = AmamSerializer
+    queryset = Amam.objects.all()
+
+    def get(self, request, pk=None, format=None):
+        if pk:
+            protocols = Amam.objects.filter(pk=int(pk))
+        else:
+            protocols = Amam.objects.all()[::-1]
+        serializer = AmamSerializer(protocols, many=True)
+        return Response(serializer.data)
+
+
+    def post(self, request, format=None):
+        serializer = AmamSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class ProtocolList(viewsets.ViewSet):

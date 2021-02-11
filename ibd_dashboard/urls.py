@@ -15,5 +15,9 @@ urlpatterns = [
 
     path('api/protocols', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete', 'put':'update'})),
     path('api/protocols/<int:pk>', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
-    path('api/protocols-images', views.ProtocolImagesList.as_view({'get':'get', 'post':'post', 'delete':'delete'}))
+    path('api/protocols-images', views.ProtocolImagesList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
+
+    path('api/amam', views.AmamView.as_view({'get':'get', 'post':'post'})),
+    path('api/amam/<int:pk>', views.AmamView.as_view({'get':'get', 'post':'post'})),
+
 ]

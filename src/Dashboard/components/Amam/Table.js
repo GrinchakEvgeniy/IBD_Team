@@ -1,6 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {getAmamFetch} from "../functions";
 
 const Table = () => {
+    const [amam, setAmam] = useState([]);
+
+    const getAmam = () => {
+        getAmamFetch()
+            .then((data)=>{
+                setAmam(data)
+            })
+    }
+
+    useEffect(()=>{
+        getAmam();
+    }, []);
+
     return (
         <div id="datatables-clients_wrapper" className="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div className="row">
@@ -27,6 +41,8 @@ const Table = () => {
                             <thead>
                             <tr role="row">
                                 <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
+                                    colSpan="1"  >Action</th>
+                                <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
                                     colSpan="1"  >Subject</th>
                                 <th className="sorting" tabIndex="0" aria-controls="datatables-clients" rowSpan="1"
                                     colSpan="1"  >Date</th>
@@ -49,78 +65,47 @@ const Table = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr role="row" className="odd">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Biopsy</td>
-                                <td>tissue</td>
-                                <td>2</td>
-                                <td>N/A</td>
-                                <td>6212447881</td>
-                                <td>22.12.2020</td>
-                                <td>6854461062</td>
-                            </tr>
-                            <tr role="row" className="even">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Hematology&Differential Panel</td>
-                                <td>whole blood</td>
-                                <td>1</td>
-                                <td>+</td>
-                                <td>6212447866</td>
-                                <td>17.12.2020</td>
-                                <td>32324842682</td>
-                            </tr>
-                            <tr role="row" className="odd">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Biopsy</td>
-                                <td>tissue</td>
-                                <td>2</td>
-                                <td>N/A</td>
-                                <td>6212447881</td>
-                                <td>22.12.2020</td>
-                                <td>6854461062</td>
-                            </tr>
-                            <tr role="row" className="even">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Hematology&Differential Panel</td>
-                                <td>whole blood</td>
-                                <td>1</td>
-                                <td>+</td>
-                                <td>6212447866</td>
-                                <td>17.12.2020</td>
-                                <td>32324842682</td>
-                            </tr>
-                            <tr role="row" className="odd">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Biopsy</td>
-                                <td>tissue</td>
-                                <td>2</td>
-                                <td>N/A</td>
-                                <td>6212447881</td>
-                                <td>22.12.2020</td>
-                                <td>6854461062</td>
-                            </tr>
-                            <tr role="row" className="even">
-                                <td className="dtr-control">20759</td>
-                                <td className="sorting_1">17.12.2020</td>
-                                <td>V1 SCR</td>
-                                <td>Hematology&Differential Panel</td>
-                                <td>whole blood</td>
-                                <td>1</td>
-                                <td>+</td>
-                                <td>6212447866</td>
-                                <td>17.12.2020</td>
-                                <td>32324842682</td>
-                            </tr>
+                            {
+                                amam.map((value, index)=>{
+                                    if(index%2 == 0){
+                                        return <tr role="row" className="odd">
+                                            <td className="dtr-control">
+                                                <p>{value.id}</p>
+                                                <button className="btn btn-danger">Delete</button>
+                                                <button className="btn btn-warning">Update</button>
+                                            </td>
+                                            <td>{value.subject}</td>
+                                            <td className="sorting_1">{value.date}</td>
+                                            <td>{value.visit}</td>
+                                            <td>{value.sample_type_first}</td>
+                                            <td>{value.sample_type_second}</td>
+                                            <td>{value.of_tubes}</td>
+                                            <td>{value.result}</td>
+                                            <td>{value.accession}</td>
+                                            <td>{value.shipping_date}</td>
+                                            <td>{value.airwaybill}</td>
+                                        </tr>
+                                    } else {
+                                        return <tr role="row" className="even">
+                                            <td className="dtr-control">
+                                                <p>{value.id}</p>
+                                                <button className="btn btn-danger">Delete</button>
+                                                <button className="btn btn-warning">Update</button>
+                                            </td>
+                                            <td>{value.subject}</td>
+                                            <td className="sorting_1">{value.date}</td>
+                                            <td>{value.visit}</td>
+                                            <td>{value.sample_type_first}</td>
+                                            <td>{value.sample_type_second}</td>
+                                            <td>{value.of_tubes}</td>
+                                            <td>{value.result}</td>
+                                            <td>{value.accession}</td>
+                                            <td>{value.shipping_date}</td>
+                                            <td>{value.airwaybill}</td>
+                                        </tr>
+                                    }
+                                })
+                            }
                             </tbody>
                         </table>
                     </div>
