@@ -27,9 +27,9 @@
      }
      let response = null;
      if (protocol_id != null){
-         response = await fetch('/api/amam'+protocol_id, request);
+         response = await fetch('/api/get-amam'+protocol_id, request);
      } else {
-         response = await fetch('/api/amam', request);
+         response = await fetch('/api/get-amam', request);
      }
      const result = await response.json();
      return result;
@@ -46,7 +46,7 @@
         },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     }
-    const response = await fetch('/api/amam', request);
+    const response = await fetch('/api/post-amam', request);
     const result = await response.json();
     return result;
 }
@@ -63,9 +63,9 @@
      }
      let response = null;
      if (protocol_id != null){
-         response = await fetch('/api/protocols/'+protocol_id, request);
+         response = await fetch('/api/get-protocol/'+protocol_id, request);
      } else {
-         response = await fetch('/api/protocols', request);
+         response = await fetch('/api/get-protocols', request);
      }
      const result = await response.json();
      return result;
@@ -82,7 +82,7 @@
          },
          body: JSON.stringify(data)
      }
-     const response = await fetch('/api/protocols', request);
+     const response = await fetch('/api/delete-protocol', request);
      const result = await response.json();
      return result;
  }
@@ -99,7 +99,7 @@
          },
          body: JSON.stringify(data)
      }
-     const response = await fetch('/api/protocols', request);
+     const response = await fetch('/api/put-protocol', request);
      const result = await response.json();
      return result;
  }
@@ -116,7 +116,7 @@ export async function uploadProtocol(data){
         },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     }
-    const response = await fetch('/api/protocols', request);
+    const response = await fetch('/api/post-protocol', request);
     const result = await response.json();
     return result;
 }
@@ -132,7 +132,7 @@ export async function uploadProtocolImages(data){
         },
         body: data // body data type must match "Content-Type" header
     }
-    const response = await fetch('/api/protocols-images', request);
+    const response = await fetch('/api/post-protocols-images', request);
     const result = await response.json();
     return result;
 }
@@ -148,7 +148,7 @@ export async function deleteProtocolImages(data){
         },
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     }
-    const response = await fetch('/api/protocols-images', request);
+    const response = await fetch('/api/delete-protocols-images', request);
     const result = await response.json();
     return result;
 }

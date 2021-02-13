@@ -11,7 +11,7 @@ from rest_framework import status
 
 
 
-class AmamView(viewsets.ViewSet):
+class GetAmamView(viewsets.ModelViewSet):
     serializer_class = AmamSerializer
     queryset = Amam.objects.all()
 
@@ -24,6 +24,10 @@ class AmamView(viewsets.ViewSet):
         return Response(serializer.data)
 
 
+class PostAmamView(viewsets.ModelViewSet):
+    serializer_class = AmamSerializer
+    queryset = Amam.objects.all()
+
     def post(self, request, format=None):
         serializer = AmamSerializer(data=request.data)
         if serializer.is_valid():
@@ -34,7 +38,7 @@ class AmamView(viewsets.ViewSet):
 
 
 
-class ProtocolList(viewsets.ViewSet):
+class GetProtocolView(viewsets.ModelViewSet):
     serializer_class = ProtocolSerializer
     queryset = Protocol.objects.all()
 
@@ -46,6 +50,11 @@ class ProtocolList(viewsets.ViewSet):
         serializer = ProtocolSerializer(protocols, many=True)
         return Response(serializer.data)
 
+
+class PostProtocolView(viewsets.ModelViewSet):
+    serializer_class = ProtocolSerializer
+    queryset = Protocol.objects.all()
+
     def post(self, request, format=None):
         serializer = ProtocolSerializer(data=request.data)
         if serializer.is_valid():
@@ -53,7 +62,11 @@ class ProtocolList(viewsets.ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request):
+class PutProtocolView(viewsets.ModelViewSet):
+    serializer_class = ProtocolSerializer
+    queryset = Protocol.objects.all()
+
+    def put(self, request):
         print(request.data)
         instance = Protocol.objects.get(id=int(request.data['id']))
         instance.patient = request.data['patient']
@@ -65,6 +78,11 @@ class ProtocolList(viewsets.ViewSet):
         serializer = ProtocolSerializer([instance], many=True)
         return Response(serializer.data)
 
+
+class DeleteProtocolView(viewsets.ModelViewSet):
+    serializer_class = ProtocolSerializer
+    queryset = Protocol.objects.all()
+
     def delete(self, request, format=None):
         snippet = Protocol.objects.get(pk=int(request.data['delete_id']))
         snippet.delete()
@@ -72,7 +90,8 @@ class ProtocolList(viewsets.ViewSet):
         serializer = ProtocolSerializer(protocols, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-class ProtocolImagesList(viewsets.ViewSet):
+
+class GetProtocolImagesView(viewsets.ModelViewSet):
     serializer_class = ProtocolImageSerializer
     queryset = ProtocolImages.objects.all()
 
@@ -80,6 +99,11 @@ class ProtocolImagesList(viewsets.ViewSet):
         instance = ProtocolImages.objects.all()
         serializer = ProtocolImageSerializer(instance, many=True)
         return Response(serializer.data)
+
+
+class PostProtocolImagesView(viewsets.ModelViewSet):
+    serializer_class = ProtocolImageSerializer
+    queryset = ProtocolImages.objects.all()
 
     def post(self, request, format=None):
         for value in request.FILES:
@@ -89,6 +113,11 @@ class ProtocolImagesList(viewsets.ViewSet):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({'status': 'OK'}, status=status.HTTP_201_CREATED)
+
+
+class DeleteProtocolImagesView(viewsets.ModelViewSet):
+    serializer_class = ProtocolImageSerializer
+    queryset = ProtocolImages.objects.all()
 
     def delete(self, request, format=None):
         for id in request.data['ids']:

@@ -31,7 +31,8 @@ class Protocol(models.Model):
 
 class ProtocolImages(models.Model):
     image = models.ImageField(upload_to='notes/', null=True, blank=True)
-    protocol = models.ForeignKey(Protocol,
+    name = models.CharField(max_length=200, blank=True, null=True)
+    protocol_id = models.ForeignKey(Protocol,
                                  on_delete=models.CASCADE,
                                  null=True,
                                  blank=True,

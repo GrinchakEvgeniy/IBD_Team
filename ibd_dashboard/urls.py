@@ -13,11 +13,18 @@ urlpatterns = [
     path('protocols/print/<int:pk>', views.dashboard, name="protocol-print"),
     path('logout', views.log_out, name="logout"),
 
-    path('api/protocols', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete', 'put':'update'})),
-    path('api/protocols/<int:pk>', views.ProtocolList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
-    path('api/protocols-images', views.ProtocolImagesList.as_view({'get':'get', 'post':'post', 'delete':'delete'})),
+    path('api/get-protocols', views.GetProtocolView.as_view({'get':'get'})),
+    path('api/post-protocol', views.PostProtocolView.as_view({'post':'post'})),
+    path('api/delete-protocol', views.DeleteProtocolView.as_view({'delete':'delete'})),
+    path('api/put-protocol', views.PutProtocolView.as_view({'put':'put'})),
+    path('api/get-protocol/<int:pk>', views.GetProtocolView.as_view({'get':'get'})),
 
-    path('api/amam', views.AmamView.as_view({'get':'get', 'post':'post'})),
-    path('api/amam/<int:pk>', views.AmamView.as_view({'get':'get', 'post':'post'})),
+    path('api/get-protocols-images', views.GetProtocolImagesView.as_view({'get':'get'})),
+    path('api/post-protocols-images', views.PostProtocolImagesView.as_view({'post':'post'})),
+    path('api/delete-protocols-images', views.DeleteProtocolImagesView.as_view({'delete':'delete'})),
+
+    path('api/get-amam', views.GetAmamView.as_view({'get':'get'})),
+    path('api/post-amam', views.PostAmamView.as_view({'post':'post'})),
+    path('api/get-amam/<int:pk>', views.GetAmamView.as_view({'get':'get'})),
 
 ]
