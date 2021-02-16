@@ -14,9 +14,6 @@ class Amam(models.Model):
     shipping_date = models.CharField(max_length=10)
     airwaybill = models.IntegerField(verbose_name='Airwaybill#')
     comments = models.TextField()
-    date_order = models.CharField(max_length=10)
-    number_order = models.IntegerField()
-    date_getting = models.CharField(max_length=10)
 
 
 class Protocol(models.Model):

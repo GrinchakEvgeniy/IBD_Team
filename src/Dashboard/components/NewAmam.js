@@ -15,9 +15,6 @@ const NewAmam = () => {
         shipping_date: "",
         airwaybill: "",
         comments: "",
-        date_order: "",
-        number_order: "",
-        date_getting: ""
     });
 
     const Save = () => {
@@ -53,7 +50,7 @@ const NewAmam = () => {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Date</span>
-                <input type="text" className="form-control" aria-label="Sizing example input"
+                <input type="date" className="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default"
                 onChange={(event)=>{
                             setSendData({...sendData, date: event.target.value})
@@ -70,26 +67,40 @@ const NewAmam = () => {
                 />
             </div>
             <div className="input-group mb-3">
-                <span className="input-group-text">Sample type</span>
-                <input type="text" aria-label="First name" className="form-control"
-                    onChange={(event)=>{
-                            setSendData({...sendData, sample_type_first: event.target.value})
-                        }}
-                />
-                <input type="text" aria-label="Last name" className="form-control"
-                    onChange={(event)=>{
-                            setSendData({...sendData, sample_type_second: event.target.value})
-                        }}
+                <span className="input-group-text" id="inputGroup-sizing-default">Accession#</span>
+                <input type="number" className="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default"
+                       onChange={(event)=>{
+                           setSendData({...sendData, accession: event.target.value})
+                       }}
                 />
             </div>
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default"># of tubes</span>
-                <input type="number" className="form-control" aria-label="Sizing example input"
+                <span className="input-group-text" id="inputGroup-sizing-default">Shipping date</span>
+                <input type="date" className="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, of_tubes: event.target.value})
-                        }}
+                       onChange={(event)=>{
+                           setSendData({...sendData, shipping_date: event.target.value})
+                       }}
                 />
+            </div>
+            <div className="input-group mb-3">
+                <span className="input-group-text">Sample type</span>
+                <select name="" id="" className="form-control">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                </select>
+                <select name="" id="" className="form-control">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                </select>
+                <select name="" id="" className="form-control">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                </select>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Result</span>
@@ -101,56 +112,11 @@ const NewAmam = () => {
                 />
             </div>
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Accession#</span>
-                <input type="number" className="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, accession: event.target.value})
-                        }}
-                />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Shipping date</span>
-                <input type="text" className="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, shipping_date: event.target.value})
-                        }}
-                />
-            </div>
-            <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Airwaybill#</span>
                 <input type="number" className="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default"
                         onChange={(event)=>{
                             setSendData({...sendData, airwaybill: event.target.value})
-                        }}
-                />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Date order</span>
-                <input type="text" className="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, date_order: event.target.value})
-                        }}
-                />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Number order</span>
-                <input type="number" className="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, number_order: event.target.value})
-                        }}
-                />
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Date getting</span>
-                <input type="text" className="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default"
-                        onChange={(event)=>{
-                            setSendData({...sendData, date_getting: event.target.value})
                         }}
                 />
             </div>

@@ -7,6 +7,7 @@ urlpatterns = [
     path('dashboard', views.dashboard, name="dashboard"),
     path('amam', views.dashboard, name="amam"),
     path('amam/new', views.dashboard, name="amam-new"),
+    path('amam/subfields', views.dashboard, name="amam-subfields"),
     path('protocols', views.dashboard, name="protocols"),
     path('protocols/new', views.dashboard, name="protocol-new"),
     path('protocols/update/<int:pk>', views.dashboard, name="protocol-update"),

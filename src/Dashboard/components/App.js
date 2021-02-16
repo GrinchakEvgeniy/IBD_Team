@@ -8,6 +8,7 @@ import NewAmam from "./NewAmam";
 import NewProtocol from "./NewProtocol";
 import PrintProtocol from "./PrintProtocol";
 import UpdateProtocol from "./UpdateProtocol";
+import Subfields from "./Subfields";
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
                     <Route exact path='/protocols' component={Protocols}/>
                     <Route exact path='/amam' component={Amam}/>
                     <Route exact path='/amam/new' component={NewAmam}/>
+                    <Route exact path='/amam/subfields' component={Subfields}/>
                     <Route exact path='/protocols/new' component={NewProtocol}/>
                     <Route exact path='/protocols/print/:id' component={PrintProtocol}/>
                     <Route exact path='/protocols/update/:id' component={UpdateProtocol}/>

@@ -175,3 +175,24 @@ body {
 .protocols_wrap .dtr-control button {
     margin-right: 5px;
 }
+
+.amam_sub_menu {
+    width: 120px;
+}
+.amam_sub_menu a p {
+    font-size: 14px !important;
+}
+
+.subfields_wrap {
+    display: flex;
+}
+._colon .content {
+    display: flex;
+    flex-direction: column;
+}
+._colon {
+    width: 100%;
+}
+.content .item {
+    display: flex;
+}
