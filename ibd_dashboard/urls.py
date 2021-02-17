@@ -28,4 +28,28 @@ urlpatterns = [
     path('api/post-amam', views.PostAmamView.as_view({'post':'post'})),
     path('api/get-amam/<int:pk>', views.GetAmamView.as_view({'get':'get'})),
 
+    path('api/get-airwaybill', views.GetAirwaybillView.as_view({'get':'get'})),
+    path('api/post-airwaybill', views.PostAirwaybillView.as_view({'post':'post'})),
+    path('api/delete-airwaybill', views.DeleteAirwaybillView.as_view({'delete':'delete'})),
+
+    path('api/get-of_tubes', views.GetOfTubesView.as_view({'get':'get'})),
+    path('api/post-of_tubes', views.PostOfTubesView.as_view({'post':'post'})),
+    path('api/delete-of_tubes', views.DeleteOfTubesView.as_view({'delete':'delete'})),
+
+    path('api/get-sample_type_first', views.GetSampleTypeFirstView.as_view({'get':'get'})),
+    path('api/post-sample_type_first', views.PostSampleTypeFirstView.as_view({'post':'post'})),
+    path('api/delete-sample_type_first', views.DeleteSampleTypeFirstView.as_view({'delete':'delete'})),
+
+    path('api/get-sample_type_second', views.GetSampleTypeSecondView.as_view({'get':'get'})),
+    path('api/post-sample_type_second', views.PostSampleTypeSecondView.as_view({'post':'post'})),
+    path('api/delete-sample_type_second', views.DeleteSampleTypeSecondView.as_view({'delete':'delete'})),
+
+    path('api/get-subject', views.GetSubjectView.as_view({'get':'get'})),
+    path('api/post-subject', views.PostSubjectView.as_view({'post':'post'})),
+    path('api/delete-subject', views.DeleteSubjectView.as_view({'delete':'delete'})),
+
+    path('api/get-visit', views.GetVisitView.as_view({'get':'get'})),
+    path('api/post-visit', views.PostVisitView.as_view({'post':'post'})),
+    path('api/delete-visit', views.DeleteVisitView.as_view({'delete':'delete'})),
+
 ]

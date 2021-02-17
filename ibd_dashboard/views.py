@@ -10,6 +10,239 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+# ===========================$$======================
+class GetAirwaybillView(viewsets.ModelViewSet):
+    serializer_class = AirwaybillSerializer
+    queryset = Airwaybill.objects.all()
+
+    def get(self, request):
+        queryset = Airwaybill.objects.all()[::-1]
+        serializer_class = AirwaybillSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostAirwaybillView(viewsets.ModelViewSet):
+    serializer_class = AirwaybillSerializer
+    queryset = Airwaybill.objects.all()
+
+    def post(self, request):
+        serializers = AirwaybillSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = Airwaybill.objects.all()[::-1]
+            serializer = AirwaybillSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteAirwaybillView(viewsets.ModelViewSet):
+    serializer_class = AirwaybillSerializer
+    queryset = Airwaybill.objects.all()
+
+    def delete(self, request):
+        instance = Airwaybill.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = Airwaybill.objects.all()[::-1]
+        serializer = AirwaybillSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
+
+# ===========================$$======================
+class GetOfTubesView(viewsets.ModelViewSet):
+    serializer_class = OfTubesSerializer
+    queryset = OfTubes.objects.all()
+
+    def get(self, request):
+        queryset = OfTubes.objects.all()[::-1]
+        serializer_class = OfTubesSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostOfTubesView(viewsets.ModelViewSet):
+    serializer_class = OfTubesSerializer
+    queryset = OfTubes.objects.all()
+
+    def post(self, request):
+        serializers = OfTubesSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = OfTubes.objects.all()[::-1]
+            serializer = OfTubesSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteOfTubesView(viewsets.ModelViewSet):
+    serializer_class = OfTubesSerializer
+    queryset = OfTubes.objects.all()
+
+    def delete(self, request):
+        instance = OfTubes.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = OfTubes.objects.all()[::-1]
+        serializer = OfTubesSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
+
+# ===========================$$======================
+class GetSampleTypeFirstView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeFirstSerializer
+    queryset = SampleTypeFirst.objects.all()
+
+    def get(self, request):
+        queryset = SampleTypeFirst.objects.all()[::-1]
+        serializer_class = SampleTypeFirstSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostSampleTypeFirstView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeFirstSerializer
+    queryset = SampleTypeFirst.objects.all()
+
+    def post(self, request):
+        serializers = SampleTypeFirstSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = SampleTypeFirst.objects.all()[::-1]
+            serializer = SampleTypeFirstSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteSampleTypeFirstView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeFirstSerializer
+    queryset = SampleTypeFirst.objects.all()
+
+    def delete(self, request):
+        instance = SampleTypeFirst.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = SampleTypeFirst.objects.all()[::-1]
+        serializer = SampleTypeFirstSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
+
+# ===========================$$======================
+class GetSampleTypeSecondView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeSecondSerializer
+    queryset = SampleTypeSecond.objects.all()
+
+    def get(self, request):
+        queryset = SampleTypeSecond.objects.all()[::-1]
+        serializer_class = SampleTypeSecondSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostSampleTypeSecondView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeSecondSerializer
+    queryset = SampleTypeSecond.objects.all()
+
+    def post(self, request):
+        serializers = SampleTypeSecondSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = SampleTypeSecond.objects.all()[::-1]
+            serializer = SampleTypeSecondSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteSampleTypeSecondView(viewsets.ModelViewSet):
+    serializer_class = SampleTypeSecondSerializer
+    queryset = SampleTypeSecond.objects.all()
+
+    def delete(self, request):
+        instance = SampleTypeSecond.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = SampleTypeSecond.objects.all()[::-1]
+        serializer = SampleTypeSecondSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
+
+# ===========================$$======================
+class GetSubjectView(viewsets.ModelViewSet):
+    serializer_class = SubjectSerializer
+    queryset = Subject.objects.all()
+
+    def get(self, request):
+        queryset = Subject.objects.all()[::-1]
+        serializer_class = SubjectSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostSubjectView(viewsets.ModelViewSet):
+    serializer_class = SubjectSerializer
+    queryset = Subject.objects.all()
+
+    def post(self, request):
+        serializers = SubjectSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = Subject.objects.all()[::-1]
+            serializer = SubjectSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteSubjectView(viewsets.ModelViewSet):
+    serializer_class = SubjectSerializer
+    queryset = Subject.objects.all()
+
+    def delete(self, request):
+        instance = Subject.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = Subject.objects.all()[::-1]
+        serializer = SubjectSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
+
+# ===========================$$======================
+class GetVisitView(viewsets.ModelViewSet):
+    serializer_class = VisitSerializer
+    queryset = Visit.objects.all()
+
+    def get(self, request):
+        queryset = Visit.objects.all()[::-1]
+        serializer_class = VisitSerializer(queryset, many=True)
+        return Response(serializer_class.data)
+
+
+class PostVisitView(viewsets.ModelViewSet):
+    serializer_class = VisitSerializer
+    queryset = Visit.objects.all()
+
+    def post(self, request):
+        serializers = VisitSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            instance = Visit.objects.all()[::-1]
+            serializer = VisitSerializer(instance, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'error'})
+
+
+class DeleteVisitView(viewsets.ModelViewSet):
+    serializer_class = VisitSerializer
+    queryset = Visit.objects.all()
+
+    def delete(self, request):
+        instance = Visit.objects.get(pk=int(request.data['id']))
+        instance.delete()
+        instance = Visit.objects.all()[::-1]
+        serializer = VisitSerializer(instance, many=True)
+        return Response(serializer.data)
+
+
+# =============================||=====================
 
 class GetAmamView(viewsets.ModelViewSet):
     serializer_class = AmamSerializer

@@ -16,6 +16,30 @@ class Amam(models.Model):
     comments = models.TextField()
 
 
+class Airwaybill(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
+class OfTubes(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
+class SampleTypeFirst(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
+class SampleTypeSecond(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
+class Subject(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
+class Visit(models.Model):
+    value = models.CharField(max_length=500, null=True, blank=True)
+
+
 class Protocol(models.Model):
     patient = models.CharField(max_length=100, null=True, blank=True)
     date_of_examination = models.CharField(max_length=10, null=True, blank=True)
